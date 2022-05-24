@@ -3,5 +3,5 @@ export interface ITodo {
   text: string;
   isCompleted: boolean;
   isToday: boolean;
-  hour: number;
+  hour: string;
 }
