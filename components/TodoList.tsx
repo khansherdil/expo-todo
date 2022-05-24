@@ -24,9 +24,7 @@ const TodoList = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 30,
-  },
+  container: {},
 });
 
 export default TodoList;

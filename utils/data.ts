@@ -6,20 +6,20 @@ export const data: ITodo[] = [
     text: "Go for food",
     isCompleted: false,
     isToday: true,
-    hour: new Date().getHours(),
+    hour: "11:00",
   },
   {
     id: 2,
     text: "Go for walk",
     isCompleted: true,
     isToday: true,
-    hour: new Date().getHours(),
+    hour: "12:00",
   },
   {
     id: 3,
     text: "Go for gym",
     isCompleted: false,
     isToday: false,
-    hour: new Date().getHours(),
+    hour: "14:20",
   },
 ];
