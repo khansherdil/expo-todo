@@ -1,31 +1,25 @@
-export interface Todo {
-  id: number;
-  text: string;
-  isCompleted: boolean;
-  isToday: boolean;
-  hour: Date;
-}
+import { ITodo } from "../@types";
 
-export const data: Todo[] = [
+export const data: ITodo[] = [
   {
     id: 1,
     text: "Go for food",
     isCompleted: false,
     isToday: true,
-    hour: new Date(),
+    hour: new Date().getHours(),
   },
   {
     id: 2,
     text: "Go for walk",
-    isCompleted: false,
+    isCompleted: true,
     isToday: true,
-    hour: new Date(),
+    hour: new Date().getHours(),
   },
   {
     id: 3,
     text: "Go for gym",
     isCompleted: false,
-    isToday: true,
-    hour: new Date(),
+    isToday: false,
+    hour: new Date().getHours(),
   },
 ];

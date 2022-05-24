@@ -1,17 +1,32 @@
 import React from "react";
-import { FlatList, View, Text } from "react-native";
+import { FlatList, View, Text, StyleSheet } from "react-native";
 import { data } from "../utils/data";
+import Todo from "./Todo";
 
 const TodoList = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={data}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <Text>{item.text}</Text>}
+        renderItem={({ item }) => (
+          <Todo
+            hour={item.hour}
+            text={item.text}
+            id={item.id}
+            isToday={item.isToday}
+            isCompleted={item.isCompleted}
+          />
+        )}
       />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 30,
+  },
+});
 
 export default TodoList;
