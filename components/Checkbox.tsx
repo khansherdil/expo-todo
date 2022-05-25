@@ -11,8 +11,8 @@ const Checkbox: React.FC<ITodo> = ({
   isToday,
 }) => {
   return isToday ? (
-    <TouchableOpacity style={styles.checked}>
-      <Text>{isCompleted && <View style={styles.unchecked}></View>}</Text>
+    <TouchableOpacity style={styles.unchecked}>
+      <Text>{isCompleted && <View style={styles.checked}></View>}</Text>
     </TouchableOpacity>
   ) : (
     <View style={styles.notToday}></View>
@@ -36,16 +36,13 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-    elevation: 5,
   },
   unchecked: {
     width: 20,
     height: 20,
     marginRight: 13,
     borderRadius: 6,
-    backgroundColor: "#fefefe",
+    backgroundColor: "#f7f7f9",
     alignItems: "center",
     justifyContent: "center",
     marginLeft: 15,
