@@ -2,8 +2,11 @@ import { useState } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import TodoList from "../components/TodoList";
 import { data } from "../utils/data";
+import { useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "../@types";
 
 export default function Home() {
+  const navigate = useNavigation();
   let sortedData = data.sort((a, b) => {
     return Number(a.isCompleted) - Number(b.isCompleted);
   });
@@ -40,7 +43,10 @@ export default function Home() {
       <Text style={styles.title}>Tomorrow</Text>
       <TodoList data={localData.filter((d) => !d.isToday)} />
 
-      <TouchableOpacity style={styles.addButton}>
+      <TouchableOpacity
+        style={styles.addButton}
+        onPress={() => navigate.navigate("Add")}
+      >
         <Text style={{ color: "#fafafa", textTransform: "capitalize" }}>
           new
         </Text>
