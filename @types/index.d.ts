@@ -11,3 +11,8 @@ export interface ITodo {
 export interface TodoListProps {
   data: ITodo[];
 }
+
+export type RootStackParamList = {
+  Home: undefined;
+  Add: undefined;
+};
