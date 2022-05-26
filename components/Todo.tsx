@@ -2,8 +2,11 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { ITodo } from "../@types";
 import Checkbox from "./Checkbox";
+import moment from "moment";
+import { useState } from "react";
 
 const Todo: React.FC<ITodo> = ({ id, hour, text, isCompleted, isToday }) => {
+  const [localHour, setLocalhour] = useState(new Date(hour));
   return (
     <View style={styles.container}>
       <Checkbox
@@ -36,7 +39,7 @@ const Todo: React.FC<ITodo> = ({ id, hour, text, isCompleted, isToday }) => {
               : styles.time
           }
         >
-          {hour}
+          {moment(localHour).format("LT")}
         </Text>
       </View>
     </View>

@@ -9,8 +9,13 @@ import {
 import React from "react";
 import { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { useDispatch, useSelector } from "react-redux";
+import { addTodoReducer } from "../redux/todosSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 
 const AddTodo = () => {
+  const navigation = useNavigation();
   const [name, setName] = useState("");
   const [isToday, setIsToday] = useState(false);
   const [state, setState] = useState({
@@ -18,6 +23,31 @@ const AddTodo = () => {
     mode: "time",
     show: false,
   });
+
+  //default list select
+  const listTodos = useSelector((state) => state.todos.todos);
+  const dispatch = useDispatch();
+  const addTodo = async () => {
+    const newTodo = {
+      id: Math.floor(Math.random() * 100000),
+      text: name,
+      hour: state.date.toString(),
+      isToday: isToday,
+      isCompleted: false,
+    };
+
+    try {
+      await AsyncStorage.setItem(
+        "@todos",
+        JSON.stringify([...listTodos, newTodo])
+      );
+      dispatch(addTodoReducer(newTodo));
+      navigation.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const onChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || state.date;
 
@@ -96,7 +126,7 @@ const AddTodo = () => {
           onValueChange={(value) => setIsToday(value)}
         ></Switch>
       </View>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={addTodo}>
         <Text>Add</Text>
       </TouchableOpacity>
     </View>
